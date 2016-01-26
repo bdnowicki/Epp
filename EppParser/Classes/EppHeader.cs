@@ -2,8 +2,9 @@
 
 namespace EppParser.Classes
 {
-    public class EppHeader : List<EppContent>
+    public abstract class EppHeader 
     {
-
+        public string Name { get; set; }
+        public abstract string GetString();
     }
 }

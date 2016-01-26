@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EppParser</RootNamespace>
     <AssemblyName>EppParser</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\EppContent.cs" />
+    <Compile Include="Classes\EppField.cs" />
     <Compile Include="Classes\EppHeader.cs" />
     <Compile Include="Classes\EppFile.cs" />
+    <Compile Include="Classes\EppHeaderContent.cs" />
     <Compile Include="Classes\EppHeaderInfo.cs" />
-    <Compile Include="EppParser.cs" />
+    <Compile Include="Classes\IEppElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
