@@ -5,12 +5,12 @@ using System.IO;
 
 namespace EppParser.Classes
 {
-    public class EppContent : IList<EppField>, IEppElement
+    public class EppContent : IList<EppItem>, IEppElement
     {
         #region IList implemented
 
-        private List<EppField> list = new List<EppField>();
-        public EppField this[int index]
+        private List<EppItem> list = new List<EppItem>();
+        public EppItem this[int index]
         {
             get { return list[index]; }
             set { list[index] = value; }
@@ -22,28 +22,28 @@ namespace EppParser.Classes
         public bool IsReadOnly
         { get { return false; } }
 
-        public void Add(EppField item)
+        public void Add(EppItem item)
         { list.Add(item); }
 
         public void Clear()
         { list.Clear(); }
 
-        public bool Contains(EppField item)
+        public bool Contains(EppItem item)
         { return list.Contains(item); }
 
-        public void CopyTo(EppField[] array, int arrayIndex)
+        public void CopyTo(EppItem[] array, int arrayIndex)
         { list.CopyTo(array, arrayIndex); }
 
-        public IEnumerator<EppField> GetEnumerator()
+        public IEnumerator<EppItem> GetEnumerator()
         { return list.GetEnumerator(); }
 
-        public int IndexOf(EppField item)
+        public int IndexOf(EppItem item)
         { return list.IndexOf(item); }
 
-        public void Insert(int index, EppField item)
+        public void Insert(int index, EppItem item)
         { list.Insert(index, item); }
 
-        public bool Remove(EppField item)
+        public bool Remove(EppItem item)
         { return list.Remove(item); }
 
         public void RemoveAt(int index)
@@ -57,7 +57,7 @@ namespace EppParser.Classes
         public string[] GetStringArray()
         {
             List<string> a = new List<string>();
-            foreach (EppField f in this)
+            foreach (EppItem f in this)
                 a.Add(f.GetString());
             return a.ToArray();
         }
@@ -76,7 +76,7 @@ namespace EppParser.Classes
                 int peek = reader.Peek();
                 bool fieldString = (peek == 34);
 
-                EppField f = new EppField();
+                EppItem f = new EppItem();
                 if (peek < 0 | peek == 10 || peek == 13)
                 {
                     if (iChar == 44)

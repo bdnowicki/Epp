@@ -32,17 +32,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\EppContent.cs" />
-    <Compile Include="Classes\EppField.cs" />
+    <Compile Include="Classes\EppItem.cs" />
     <Compile Include="Classes\EppHeader.cs" />
     <Compile Include="Classes\EppFile.cs" />
     <Compile Include="Classes\EppHeaderContent.cs" />
