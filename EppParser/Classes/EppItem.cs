@@ -14,7 +14,7 @@ namespace EppParser.Classes
             StringValue = "";
             IsInt = false;
             IsDecimal = false;
-            DecimalPlaces = 0;
+            DecimalPlaces = 4;
         }
 
         public string StringValue { get; set; }
@@ -24,21 +24,51 @@ namespace EppParser.Classes
 
         public bool Numeric { get { return IsDecimal || IsInt; } }
 
+        private void ResetType()
+        {
+            IsDateTime = false;
+            IsDecimal = false;
+            IsInt = false;
+        }
+
         public DateTime DateTimeValue
         {
             get { return (IsDateTime) ? DateTime.ParseExact(StringValue, "yyyyMMddhhmmss", CultureInfo.InvariantCulture) : DateTime.MinValue; }
+            set
+            {
+                StringValue = value.ToString("yyyyMMddhhmmss");
+                ResetType();
+                IsDateTime = true;
+            }
         }
 
         public decimal DecimalValue
         {
-            get { return (IsDecimal) ? decimal.Parse(StringValue, CultureInfo.InvariantCulture) : decimal.MinValue; }
-            set { StringValue = value.ToString("n" + DecimalPlaces.ToString()); }
+            get
+            {
+                return (IsDecimal) ? decimal.Parse(StringValue, NumberStyles.Any, CultureInfo.InvariantCulture) : decimal.MinValue;
+            }
+            set
+            {
+                string format = "0.";
+                for (int i = 0; i < DecimalPlaces; i++)
+                    format += "0";
+                string nVal = value.ToString(format, CultureInfo.InvariantCulture);
+                StringValue = nVal;
+                ResetType();
+                IsDecimal = true;
+            }
         }
 
         public int IntValue
         {
             get { return (IsInt) ? int.Parse(StringValue) : int.MinValue; }
-            set { StringValue = value.ToString(); }
+            set
+            {
+                StringValue = value.ToString();
+                ResetType();
+                IsInt = true;
+            }
         }
 
         public override string ToString()
@@ -51,9 +81,9 @@ namespace EppParser.Classes
             if (string.IsNullOrEmpty(StringValue))
                 return "";
             else if (IsInt)
-                return IntValue.ToString();
+                return StringValue;
             else if (IsDecimal)
-                return DecimalValue.ToString("n" + DecimalPlaces, CultureInfo.InvariantCulture);
+                return StringValue;
             else if (IsDateTime)
                 return StringValue;
             else

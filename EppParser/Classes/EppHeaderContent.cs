@@ -10,7 +10,7 @@ namespace EppParser.Classes
 
         public EppHeaderContent() : base()
         {
-
+            Name = "ZAWARTOSC";
         }
 
         private List<EppContent> list = new List<EppContent>();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace EppParser.Classes
@@ -65,6 +66,58 @@ namespace EppParser.Classes
         public override string ToString()
         {
             return string.Format("{0} ({1})", (Count > 0) ? this[0].ToString() : "pusty", Count);
+        }
+
+        public void AddString(string value)
+        { Add(new EppItem() { StringValue = value }); }
+
+        public void AddInt(int value)
+        { Add(new EppItem() { IntValue = value }); }
+
+        public void AddDecimal(decimal value)
+        { Add(new EppItem() { DecimalValue = value }); }
+
+        public void AddDateTime(DateTime value)
+        { Add(new EppItem() { DateTimeValue = value }); }
+
+        public void AddRangeObjects(object[] values)
+        {
+            foreach (object o in values)
+            {
+                Type type = o.GetType();
+                EppItem i = new EppItem();
+                switch (type.Name)
+                {
+                    case "String":
+                        i.StringValue = (string)o;
+                        break;
+                    case "Int32":
+                        i.IntValue = (int)o;
+                        break;
+                    case "Decimal":
+                        decimal v1 = (decimal)o;
+                        i.DecimalValue = Convert.ToDecimal(v1);
+                        break;
+                    case "Double":
+                        double v2 = (double)o;
+                        i.DecimalValue = Convert.ToDecimal(v2);
+                        break;
+                    case "DateTime":
+                        i.DateTimeValue = (DateTime)o;
+                        break;
+                    default:
+                        throw new Exception(string.Format("Nieznany typ '{0}'", type.Name));
+                }
+                Add(i);
+                type.ToString();
+            }
+
+        }
+
+        public void AddRange(EppItem[] items)
+        {
+            foreach (EppItem i in items)
+                Add(i);
         }
 
 

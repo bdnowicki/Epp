@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DokumentHeaderInfo.cs" />
     <Compile Include="Classes\EppContent.cs" />
     <Compile Include="Classes\EppItem.cs" />
     <Compile Include="Classes\EppHeader.cs" />
@@ -43,6 +44,7 @@
     <Compile Include="Classes\EppHeaderContent.cs" />
     <Compile Include="Classes\EppHeaderInfo.cs" />
     <Compile Include="Classes\IEppElement.cs" />
+    <Compile Include="Classes\TowaryHeaderInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

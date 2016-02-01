@@ -11,6 +11,9 @@ namespace EppParser.Classes
 
         public EppHeaderInfo() : base()
         {
+            Name = "NAGLOWEK";
+            Opis = new EppContent();
+            Zawartosc = new EppHeaderContent();
         }
 
         public override string ToString()
@@ -30,7 +33,8 @@ namespace EppParser.Classes
             StringBuilder sb = new StringBuilder("");
             sb.AppendLine(string.Format("[{0}]", Name));
             sb.AppendLine(Opis.GetString());
-            if (Zawartosc != null)
+
+            if (Zawartosc != null && Name != "INFO")
             {
                 sb.AppendLine();
                 sb.AppendLine(Zawartosc.GetString());
